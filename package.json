@@ -1,0 +1,70 @@
+{
+  "name": "@shivam-dhyani/unified-storage",
+  "version": "0.1.0-alpha.0",
+  "description": "One storage API over many backends (Telegram, Cloudflare R2) with built-in AES-256-GCM encryption and random-access range decryption.",
+  "license": "MIT",
+  "author": "Shivam Dhyani",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shivam-Dhyani/unified-storage.git"
+  },
+  "keywords": [
+    "storage",
+    "telegram",
+    "cloudflare-r2",
+    "encryption",
+    "aes-256-gcm",
+    "range-read"
+  ],
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsup",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "integration:telegram": "tsx scripts/integration-telegram.ts",
+    "bench": "tsx scripts/bench.ts",
+    "prepublishOnly": "pnpm build"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.1146.0",
+    "@aws-sdk/s3-request-presigner": "^3.1146.0",
+    "telegram": "^2.26.22"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.4",
+    "tsup": "^8.5.1",
+    "tsx": "^4.23.15",
+    "typescript": "^5.9.3",
+    "vitest": "^5.0.3"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "bufferutil",
+      "utf-8-validate",
+      "es5-ext"
+    ]
+  }
+}
